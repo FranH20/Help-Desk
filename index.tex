@@ -75,14 +75,29 @@ DISEÑO E IMPLEMENTACIÓN DE MESA DE AYUDA PARA EL ÁREA DE SOPORTE TÉCNICO DE 
 %% AUTORES  ------------------------------------------------------------------------------------------------------------
 
 \section{Autores}
-Huichi Contreras, Franklin Carlos 
 
-Gonzales Cave, Angel Gabriel
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Roles & Integrantes \\
+\hline \hline
+Product owner & Gonzales Cave, Angel Gabriel \\ \hline
+Scrum master & Huichi Contreras, Franklin Carlos  \\ \hline
+Equipo scrum & Condori Quispe, Yhónn Joel | Pastor Mendoza, José Edilberto \\ \hline
+\end{tabular}
+\caption{Integrantes del equipo}
+\label{tabla:sencilla}
+\end{center}
+\end{table}
 
-Condori Quispe, Yhónn Joel	
- 
-Pastor Mendoza, José Edilberto
 
+
+\begin{itemize}
+\item Product owner : Es oficialmente responsable de gestionar el proyecto y de hacer visibles los Ìtems del Product Backlog. Toma las decisiones finales sobre los Ìtems del product backlog. Participa en la estimación de los Ìtems del backlog.
+\item Scrum master: Es el responsable de llevar a cabo el proyecto de acuerdo a las reglas SCRUM, interactua con el equipo y los clientes y también es responsable de remover todo tipo de impedimento para el desarrollo. No asigna tareas a cada miembro del equipo ni toma decisiones para el equipo, los equipos son auto- organizativos. Hace mas de coach que de lider.
+\item Equipo Scrum: Es el equipo del proyecto que tiene la autoridad para organizarse a sÌ mismo a fin de lograr los objetivos de cada sprint. Sus funciones son crear el sprint backlog, estimar los Ìtems del sprint backlog, revisar el product backlog y sugerir impedimentos para que estos se quiten del proyecto. 
+\end{itemize}
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -113,14 +128,6 @@ Este servicio permitirá a su vez ir capacitando el conocimiento del usuario en 
 
 El sistema no solo beneficiara al gestor de mesa de ayuda encargado del soporte tecnico sino tambien al usuario y al avance de las empresas, puesto que mientras menos tiempo se demande en resolver los problemas a nivel básico de soporte técnico en los equipos, más tiempo tiene el usuario de seguir trabajando en la actividad de la empresa.
 
-%%Ejemplo de cita
-\cite{Gartner} 
-
-\begin{itemize}
-	\item x
-	\item y
-	\item z
-\end{itemize}
 
 %%  SUBSECCION 
 
@@ -132,16 +139,6 @@ El sistema de mesa de ayuda permitirá que el tiempo en resolución de problemas
 %% ----------------------------------------------------------------------------------------------------------------------------------
 
 %% OBJETIVOS ------------------------------------------------------------------------------------------------------------
-
-\section{Objetivos}
-%% Ejemplo de inclusión de imagen
-\begin{figure}[htb]
-	\begin{center}
-		% ESTA PARTE ME DA UN ERROR !!!
-		%\includegraphics[width=14cm]{./IMAGENES/basededatos_1} 
-		%\caption{Incluyendo la base de datos en DevOps}
-	\end{center}
-\end{figure}
 
 %%  SUBSECCION 
 
@@ -208,7 +205,41 @@ EDITAR\\
 
 \subsection{\textbf{Metodología, técnicas usadas}}
 
-SCRUM es una metodologÌa para gestion, mejora y mantenimiento de un sistema nuevo o existente. SCRUM se concentra en como los miembros del equipo deberÌan funcionar a fin de producir un sistema flexible en un entorno que cambia constantemente. 
+SCRUM es una metodologÌa para gestion, mejora y mantenimiento de un sistema nuevo o existente. SCRUM se concentra en como los miembros del equipo deberÌan funcionar a fin de producir un sistema flexible en un entorno que cambia constantemente. \cite{ScrumDef}
+
+\subsubsection{\textbf{Inicio}}
+
+\begin{itemize}
+\item Planeamiento: Consiste en establecer la visión, el presupuesto, forma de financiamiento y el backlog del producto. En esta fase se selecciona que funcionalidad es la mas apropiada para desarrollo inmediato. Tambien se establece el equipo de trabajo, se evaluan las herramientas de desarrollo y se define la fecha de entrega (es una fecha aproximada). \cite{ScrumDef}
+
+\item Arquitectura : Esta fase consiste en la conceptualización y análisis. Si el proyecto se trata de la mejora de un nuevo sistema, sólo se realiza un analisis limitado. Se realiza un diseño de alto nivel para actualizar los modelos del dominio y reflejar el contexto del nuevo sistema y los requerimientos y las modificaciones necesarias de la arquitectura del sistema. Los diseñadores y arquitectos dividen el proyecto en paquetes basandose en los Ìtems del backlog. En la jerga de SCRUM se llaman ìpaquetesî a los objetos o componentes que necesitan cambiarse en cada iteración. \cite{ScrumDef}
+\end{itemize}
+
+\subsubsection{\textbf{Desarrollo}}
+En esta etapa se realiza el desarrollo propiamente dicho. También se la conoce como ìIngenierÌa concurrenteî. La misma se divide en iteraciones que proveen como resultado funcionalidades incrementales al fin de cada una de ellas. Dichas iteraciones se llaman sprints. \\
+Un sprint dura aproximadamente entre una semana y 30 dÌas. Cada sprint incluye las fases tradicionales del desarrollo de software: requerimientos, an·lisis, diseño, desarrollo y entrega.
+Durante un sprint no se utilizan diagramas de gantt para seguimiento de tareas (estos parten del supuesto que las tareas de un proyecto se pueden identificar y ordenar), debido a que el desarrollo es semi-caotico y cambiante como para que se le aplique un proceso definido. \\
+Durante un sprint no se pueden cambiar los miembros del equipo scrum. Tampoco pueden introducirse cambios durante un sprint (si surge algun cambio se incluira en el backlog del producto, pero no en el del sprint). \\
+El scrum master mantiene el sprint backlog. Actualiza las tareas finalizadas y para las que no lo estan, el tiempo que el equipo piensa que tomara para terminarlas. \cite{ScrumDef} \\
+
+\subsubsection{\textbf{Reuniones Scrum}}
+Durante un sprint, todos los dÌas se realizan reuniones llamadas ìSCRUMî. El objetivo de las mismas es quitar los impedimentos que le surgen a los miembros del equipo scrum. Cada una de ellas dura aproximadamente 15 minutos. A cada miembro del equipo scrum se le pregunta:
+\begin{itemize}
+\item ¿Qué hizo durante las ultimas 24 horas?
+\item ¿Qué planea hacer las proximas 24 horas?
+\item ¿Qué obstaculos se le han presentado en las últimas 24 horas ?
+\end{itemize}
+Estas reuniones deben realizarse obligatoriamente.\cite{ScrumDef}
+
+\subsubsection{\textbf{Cierre}}
+Esta etapa comienza cuando el equipo de management decide que las variables de entorno, tales como los requerimientos se han completado. En esta etapa se genera la documentaciÛn final, se realiza el testing pre-lanzamiento y el lanzamiento propiamente dicho. \cite{ScrumDef}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=14cm]{./IMAGENES/Scrum} 
+		\caption{Cronograma del proyecto}
+	\end{center}
+\end{figure}
 
 
 %% ----------------------------------------------------------------------------------------------------------------------------------
