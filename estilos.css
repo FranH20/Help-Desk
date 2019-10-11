@@ -75,5 +75,6 @@ box-shadow: 0 0 0 1px #4dd0e1;
 .footer{
 	display: flex;
 	justify-content: space-around;
-	width: 100%;
+	width: 90%;
+	flex-wrap: wrap;
 }
