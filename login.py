@@ -14,13 +14,26 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    if 'emailuser' in session:
-        return 'You are logged in as ' + session['emailuser']
-
     return render_template('index.html')
+
+@app.route('/profile')
+def profile():
+    if 'emailuser' in session:
+        #return 'You are logged in as ' + session['emailuser']
+        user_collection=mongo.db.user
+        login_user=user_collection.find_one({'emailuser':session['emailuser']})
+        return render_template('profile.html',datos=login_user.values())
+    return render_template('login.html')
+
+@app.route('/sesiondestroy')
+def sessiondestroy():
+    session.clear()
+    return entrarlogin()
 
 @app.route('/login')
 def entrarlogin():
+    if 'emailuser' in session:
+        return redirect(url_for('profile'))
     return render_template('login.html')
 
 @app.route('/verificar', methods=['POST'])
@@ -34,7 +47,7 @@ def login():
 
         if bcrypt.checkpw(request.form['passworduser'].encode('utf-8'), hashpass):
             session['emailuser'] = request.form['emailuser']
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
 
     return 'Invalid username/password combination'
 
@@ -56,7 +69,7 @@ def register():
                 {'firstname': firstname, 'lastname': lastname, 'username': username, 'emailuser': emailuser
                     , 'genderuser': genderuser, 'password': hashpass})
             session['emailuser'] = request.form['emailuser']
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
 
         return 'That email already exists!'
 
