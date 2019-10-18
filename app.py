@@ -1,36 +1,19 @@
-from flask import Flask,request,url_for
-from flask_pymongo import PyMongo
+from flask import Flask, render_template, url_for, request, session, redirect
+#from flask_pymongo import PyMongo
+
 app = Flask(__name__)
-app.config['MONGO_URI']='mongodb+srv://user:sistemas.2018@cluster0-mwwkr.mongodb.net/test?retryWrites=true&w=majority'
-mongo=PyMongo(app)
 
-@app.route('/')
-def index():
-    return '''
-        <form method="POST" action="/create" enctype="multipart/form-data">
-            <input type="text" name="username">
-            <input type="file" name="profile_image">
-            <input type="submit">
-    '''
+#app.config['MONGO_DBNAME'] = 'helpdesk'
+#app.config['MONGO_URI'] = 'mongodb+srv://test:test@episupt-tasga.gcp.mongodb.net/test?retryWrites=true&w=majority'
+#mongo = PyMongo(app)
+app = Flask(__name__)
 
-@app.route('/create',methods=['POST'])
-def create():
-    if  'profile_image' in request.files:
-        profile_image=request.files['profile_image']
-        mongo.save_file(profile_image.filename,profile_image)
-        mongo.db.users.insert({'username':request.form.get('username'),'profile_image_name':profile_image.filename})
-        return 'Done!'
-@app.route('/file/<filename>')
-def file(filename):
-    return mongo.send_file(filename)
 
-@app.route('/profile/<username>')
-def profile(username):
-    user=mongo.db.users.find_one_or_404({'username':username})
-    return f'''
-        <h1>{username}</h1>
-        <img src="{url_for('file',filename=user['profile_image_name'])}">
-    '''
+from login import *
+#@app.route('/')
+#def index():
+ #   return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run()

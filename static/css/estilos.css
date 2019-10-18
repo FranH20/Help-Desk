@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Concert+One&display=swap');
+.abs-center {
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100%;
+}
+ 
+.form {
+  width: 100%;
+}
+.social ul li
+{
+	text-align: center;
+	display: inline-block;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 10px;
+}
+.titulologo{
+	/*font-family: 'Handlee', cursive;
+	font-family: 'Alfa Slab One', cursive;*/
+	font-family: 'Concert One', cursive;
+	color: gray;
+	font-size: 5em;
+}
+.cuadrado{
+	/*background: #83a4d4;  /* fallback for old browsers */
+/*background: -webkit-linear-gradient(to right, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
+/*background: linear-gradient(to right, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.active-cyan-4 input[type=text]:focus:not([readonly]) {
+border: 1px solid #4dd0e1;
+box-shadow: 0 0 0 1px #4dd0e1;
+}
+.active-cyan-3 input[type=text] {
+border: 1px solid #4dd0e1;
+box-shadow: 0 0 0 1px #4dd0e1;
+}
+.busqueda{
+	width: 60%;
+	display: flex;
+	align-items: center;
+}
+.subtitle{
+	font-family: 'Source Code Pro', monospace;
+
+}
+.alinear{
+	  display: flex;
+    align-items: center;
+}
+.preguntas{
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	align-items: center;
+	justify-content: center;
+	justify-content: space-around;
+}
+.columna{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.footer{
+	display: flex;
+	justify-content: space-around;
+	width: 90%;
+	flex-wrap: wrap;
+}
