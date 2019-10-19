@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, session, redirect
+from flask import Flask, render_template, url_for, request, session, redirect,flash
 from flask_pymongo import PyMongo
 import bcrypt
 import codecs
@@ -22,7 +22,7 @@ def profile():
         #return 'You are logged in as ' + session['emailuser']
         user_collection=mongo.db.user
         login_user=user_collection.find_one({'emailuser':session['emailuser']})
-        return render_template('profile.html',datos=login_user.values())
+        return render_template('profile.html',datos=login_user.items())
     return render_template('login.html')
 
 @app.route('/sesiondestroy')
@@ -49,31 +49,37 @@ def login():
             session['emailuser'] = request.form['emailuser']
             return redirect(url_for('profile'))
 
-    return 'Invalid username/password combination'
+    flash('CONTRASEÑA INCORRECTA')
+    return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+
     if request.method == 'POST':
-        user_collection = mongo.db.user
-        existing_user = user_collection.find_one({'emailuser': request.form['emailuser']})
-
-        if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            firstname = request.form.get('firstname')
-            lastname = request.form.get('lastname')
-            username = request.form.get('username')
-            emailuser = request.form.get('emailuser')
-            genderuser = request.form.get('genderuser')
-            user_collection.insert(
-                {'firstname': firstname, 'lastname': lastname, 'username': username, 'emailuser': emailuser
-                    , 'genderuser': genderuser, 'password': hashpass})
-            session['emailuser'] = request.form['emailuser']
-            return redirect(url_for('profile'))
-
-        return 'That email already exists!'
-
-    return render_template('register.html')
+        if request.form['password']==request.form['passworddos']:
+            user_collection = mongo.db.user
+            existing_user = user_collection.find_one({'emailuser': request.form['emailuser']})
+            if existing_user is None:
+                hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+                firstname = request.form.get('firstname')
+                lastname = request.form.get('lastname')
+                username = request.form.get('username')
+                emailuser = request.form.get('emailuser')
+                genderuser = request.form.get('genderuser')
+                user_collection.insert(
+                    {'firstname': firstname, 'lastname': lastname, 'username': username, 'emailuser': emailuser
+                        , 'genderuser': genderuser, 'password': hashpass})
+                session['emailuser'] = request.form['emailuser']
+                return redirect(url_for('profile'))
+            else:
+                flash('El email ya se ha registrado')
+                return render_template('register.html')
+        else:
+            flash('LAS CONTRASEÑAS NO COINCIDEN')
+            return render_template('register.html')
+    else:
+        return render_template('register.html')
 
 
 if __name__ == '__main__':

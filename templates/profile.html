@@ -15,41 +15,10 @@
         <a href="/sesiondestroy">Close session</a>
     </nav>
 </header>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    uno
-                </th>
-                <th>
-                    dos
-                </th>
-                <th>
-                    tres
-                </th>
-                <th>
-                    cuatro
-                </th>
-                <th>
-                    cinco
-                </th>
-                <th>
-                    seis
-                </th>
-                <th>
-                    siete
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for dato in datos %}
-            <td>{{dato}}</td>
-          {% endfor %}
-        </tr>
-        </tbody>
-    </table>
-
+   {% for key, value in datos %}
+      <h1>Key: {{key}}</h1>
+      <h2>Value: {{value}}</h2>
+   {% endfor %}
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

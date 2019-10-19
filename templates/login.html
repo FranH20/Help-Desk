@@ -19,6 +19,18 @@
     </div>
 
     <!-- Login Form -->
+       {% with messages = get_flashed_messages()  %}
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
     <form action="/verificar" method="POST">
       <input type="text" id="login" class="fadeIn second" name="emailuser" placeholder="login" required>
       <input type="password" id="password" class="fadeIn third" name="passworduser" placeholder="password" required>
