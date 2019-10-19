@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, session, redirect,flash
 from flask_pymongo import PyMongo
 import bcrypt
-import codecs
+import json
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -18,11 +18,14 @@ def index():
 
 @app.route('/profile')
 def profile():
+    lista=[]
     if 'emailuser' in session:
         #return 'You are logged in as ' + session['emailuser']
         user_collection=mongo.db.user
         login_user=user_collection.find_one({'emailuser':session['emailuser']})
-        return render_template('profile.html',datos=login_user.items())
+        for v in login_user.values():
+            lista.append(v)
+        return render_template('profile.html',datos=login_user)
     return render_template('login.html')
 
 @app.route('/sesiondestroy')
