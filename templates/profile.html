@@ -1,34 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+{% extends "userbase.html" %}
+{% block body %}
+                                    <div class="tab-content">
+										<div class="tab-pane active" id="m_user_profile_tab_1">
+											<form class="m-form m-form--fit m-form--label-align-right">
+												<div class="m-portlet__body">
+													<div class="form-group m-form__group m--margin-top-10 m--hide">
+														<div class="alert m-alert m-alert--default" role="alert">
+															The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																Datos Personales
+															</h3>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Full Name
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{datos.firstname}}" disabled>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Lastname
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{datos.lastname}}" disabled>
+														</div>
+													</div>
+                                                    <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Username
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{datos.username}}" disabled>
+														</div>
+													</div>
+                                                     <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Email user
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{datos.emailuser}}" disabled>
+														</div>
+													</div>
+                                                     <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Gender
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{datos.genderuser}}" disabled>
+														</div>
+													</div>
+                                                     <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Password
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="password" value="{{datos.password}}" disabled>
+														</div>
+													</div>
+                                                </div>
+											</form>
+										</div>
+										<div class="tab-pane " id="m_user_profile_tab_2"></div>
+										<div class="tab-pane " id="m_user_profile_tab_3"></div>
+                                    </div>
 
-<script>
-  tinymce.init({
-    selector: '#mytextarea'
-  });
-  </script>
-    <title>Profile</title>
-</head>
-<body>
-<header>
-    <nav>
-        <a href="/sesiondestroy">Close session</a>
-    </nav>
-</header>
-    <h1>{{ datos.username }}</h1>
-    <h1>{{ datos.emailuser }}</h1>
-
-<textarea id="mytextarea" name="mytextarea">Hello, World!</textarea>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</body>
-</html>
+{% endblock %}

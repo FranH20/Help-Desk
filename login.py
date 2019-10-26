@@ -1,4 +1,3 @@
-import bcrypt
 from app import *
 
 
@@ -33,7 +32,7 @@ def entrarlogin():
 def login():
     user_collection = mongo.db.user
     login_user = user_collection.find_one({'emailuser': request.form['emailuser']})
-
+    session['username']=login_user['username']
     if login_user:
         hashpass = login_user['password']
 

@@ -2,7 +2,7 @@
 {% block body %}
                                     <div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
-											<form class="m-form m-form--fit m-form--label-align-right">
+											<form id="ticket" class="m-form m-form--fit m-form--label-align-right" action="/generarticket" method="post">
 												<div class="m-portlet__body">
 													<div class="form-group m-form__group m--margin-top-10 m--hide">
 														<div class="alert m-alert m-alert--default" role="alert">
@@ -21,7 +21,7 @@
 															Full Name
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="Mark Andre">
+															<input class="form-control m-input" type="text" name="username" value="{{username}}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -29,7 +29,7 @@
 															Email
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="CTO">
+															<input class="form-control m-input" type="text" name="emailuser" value="{{emailuser}}">
 														</div>
 													</div>
                                                     <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -38,7 +38,7 @@
                                                 <label for="example-text-input" class="col-2 col-form-label">
                                                     Tema de ayuda</label>
                                                 <div class="col-7">
-                                                    <select class="bs-select form-control" data-live-search="true" data-size="8">
+                                                    <select class="bs-select form-control" data-live-search="true"  name="tema" data-size="8" required>
                                                         <option value="1">Tema de Ayuda 1</option>
                                                         <option value="2">Tema de Ayuda 2</option>
                                                     </select>
@@ -49,7 +49,7 @@
                                                 <label for="example-text-input" class="col-2 col-form-label">
                                                     Asunto</label>
                                                 <div class="col-7">
-                                                    <select class="bs-select form-control" data-live-search="true" data-size="8">
+                                                    <select class="bs-select form-control" data-live-search="true" name="asunto" data-size="8" required>
                                                         <option value="1">ASUNTO 1</option>
                                                         <option value="2">ASUNTO 2</option>
                                                     </select>
@@ -61,7 +61,7 @@
                                                 <label for="example-text-input" class="col-2 col-form-label">
                                                     Asunto</label>
                                                 <div class="col-7">
-                                                   <textarea id="mytextarea" name="mytextarea">Hello, World!</textarea>
+                                                   <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
                                                 </div>
 													</div>
                                         <!-- fin del text area -->
@@ -70,7 +70,7 @@
                                                 <label for="example-text-input" class="col-2 col-form-label">
                                                     Prioridad</label>
                                                 <div class="col-7">
-                                                    <select class="bs-select form-control" data-live-search="true" data-size="8">
+                                                    <select class="bs-select form-control" data-live-search="true" name="prioridad" data-size="8" required>
                                                         <option value="1">Alta</option>
                                                         <option value="2">Media</option>
                                                         <option value="3">Baja</option>
@@ -83,7 +83,7 @@
 														<div class="row">
 															<div class="col-2"></div>
 															<div class="col-7">
-																<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+																<button  type="submit" id="btn-ticket" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 																	Save changes
 																</button>
 																&nbsp;&nbsp;

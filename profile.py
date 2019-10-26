@@ -6,4 +6,7 @@ def dashboarduser():
 
 @app.route('/createticket')
 def createticket():
-    return render_template('createticket.html')
+    lista = []
+    lista.append(session['emailuser'])
+    lista.append(session['username'])
+    return render_template('createticket.html',emailuser=lista[0],username=lista[1])
