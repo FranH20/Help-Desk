@@ -20,7 +20,7 @@ def profile():
 @app.route('/sesiondestroy')
 def sessiondestroy():
     session.clear()
-    return entrarlogin()
+    return render_template('login.html')
 
 @app.route('/login')
 def entrarlogin():
