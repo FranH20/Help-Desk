@@ -16,7 +16,11 @@
       <th scope="row">{{dato.emailuser}}</th>
       <td>{{dato.tema}}</td>
       <td>{{dato.asunto}}</td>
+        {% if dato.archivo %}
       <td><a href="file/{{dato.archivo}}">Archivos</a></td>
+        {% else %}
+        <td>No hay archivos</td>
+        {% endif %}
       <td>{{dato.prioridad}}</td>
     </tr>
     {% endfor %}

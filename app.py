@@ -14,6 +14,7 @@ mongo = PyMongo(app)
 from login import *
 from profile import *
 from ticket import *
+from admin import *
 
 
 #@app.route('/')

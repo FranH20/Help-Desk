@@ -1,0 +1,44 @@
+{% extends "adminbase.html" %}
+{% block body %}
+{% for roll in usuarios.adminroll %}
+	<p>{{roll}}</p>
+{% endfor %}
+<h1>Gestion de Usuarios</h1>
+<input list="usuario" name="usuario">
+<datalist id="usuario">
+  {% for usuario in usuarios %}
+	<option value="{{usuario.firstname}}">
+  {% endfor %}
+</datalist>
+
+<form method="post" action="">      
+    <fieldset>      
+        <legend>Seleccione los Roles que tendra el usuario</legend>      
+        {% for rol in rolls %}
+		<input type="checkbox" name="roll" value="{{rol._id}}">{{rol.descripcion}} <br>      
+        <br>      
+		{% endfor %}
+        
+        <input type="submit" value="Submit now" />      
+    </fieldset>      
+</form>
+
+<h1>Roles</h1>
+<input list="roles" name="roles">
+<datalist id="roles">
+	{% for rolld in rolldos %}
+		<option value="{{roldos.descripcion}}">
+	{% endfor %}
+  
+</datalist>
+<form method="post" action="">      
+    <fieldset>      
+        <legend>Seleccione los Temas Del Rol</legend>      
+        {% for tema in temas %}
+		<input type="checkbox" name="tema" value="{{tema._id}}">{{tema.descripcion}} <br>      
+        <br>      
+		{% endfor %}     
+        <input type="submit" value="Submit now" />      
+    </fieldset>      
+</form>
+{% endblock %}

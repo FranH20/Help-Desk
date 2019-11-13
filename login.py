@@ -32,17 +32,21 @@ def entrarlogin():
 def login():
     user_collection = mongo.db.user
     login_user = user_collection.find_one({'emailuser': request.form['emailuser']})
-    session['username']=login_user['username']
-    if login_user:
-        hashpass = login_user['password']
+    if login_user is None:
+        flash('EMAIL INCORRECTO')
+        return render_template('login.html')
+    else:    
+        session['username']=login_user['username']
+        if login_user:
+            hashpass = login_user['password']
 
 
-        if bcrypt.checkpw(request.form['passworduser'].encode('utf-8'), hashpass):
-            session['emailuser'] = request.form['emailuser']
-            return redirect(url_for('profile'))
+            if bcrypt.checkpw(request.form['passworduser'].encode('utf-8'), hashpass):
+                session['emailuser'] = request.form['emailuser']
+                return redirect(url_for('profile'))
 
-    flash('CONTRASEÑA INCORRECTA')
-    return render_template('login.html')
+        flash('CONTRASEÑA INCORRECTA')
+        return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -72,8 +76,3 @@ def register():
             return render_template('register.html')
     else:
         return render_template('register.html')
-
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
