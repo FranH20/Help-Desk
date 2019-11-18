@@ -1,44 +1,220 @@
 {% extends "adminbase.html" %}
 {% block body %}
-{% for roll in usuarios.adminroll %}
-	<p>{{roll}}</p>
-{% endfor %}
+<div class="row">
+	<div class="col-sm-6">
 <h1>Gestion de Usuarios</h1>
-<input list="usuario" name="usuario">
+
+  <a style='cursor: pointer;' onClick="muestra_oculta('contenido')" title="" class="boton_mostrar">Mostrar / Ocultar</a>
+<form method="post" action="/saveroluser">
+<input list="usuario" name="usuario" class="col-sm-6 custom-select custom-select-sm">
+<br>
 <datalist id="usuario">
   {% for usuario in usuarios %}
-	<option value="{{usuario.firstname}}">
+	<option value="{{usuario.emailadmin}}">
   {% endfor %}
-</datalist>
-
-<form method="post" action="">      
-    <fieldset>      
-        <legend>Seleccione los Roles que tendra el usuario</legend>      
+</datalist>      
+    <label for="listroles">Lista de Roles:</label>
+      <select multiple class="form-control col-sm-6" id="listroles" name="listroles">
         {% for rol in rolls %}
-		<input type="checkbox" name="roll" value="{{rol._id}}">{{rol.descripcion}} <br>      
-        <br>      
-		{% endfor %}
-        
-        <input type="submit" value="Submit now" />      
-    </fieldset>      
-</form>
-
-<h1>Roles</h1>
-<input list="roles" name="roles">
-<datalist id="roles">
-	{% for rolld in rolldos %}
-		<option value="{{roldos.descripcion}}">
-	{% endfor %}
-  
-</datalist>
-<form method="post" action="">      
-    <fieldset>      
-        <legend>Seleccione los Temas Del Rol</legend>      
-        {% for tema in temas %}
-		<input type="checkbox" name="tema" value="{{tema._id}}">{{tema.descripcion}} <br>      
+        <option value="{{rol._id}}">{{rol.descripcion}}</option>
         <br>      
 		{% endfor %}     
-        <input type="submit" value="Submit now" />      
-    </fieldset>      
+      </select>
+      <input type="text" id="tbroles" name="tbroles" value="">
+      
+      <input type="submit" value="Guardar">   
 </form>
+</div>
+<div class="col-sm-6" id="contenido">
+	<h2>Tabla de Usuarios</h2>
+	<table class="mdl-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">Jose</td>
+      <td class="mdl-data-table__cell--non-numeric">Jose</td>
+      <td class="mdl-data-table__cell--non-numeric">jose@jose.com</td>
+      <td class="mdl-data-table__cell--non-numeric">
+      	<p>A,B,C</p>
+      </td>
+      <td class="mdl-data-table__cell--non-numeric">
+      		<!-- Button trigger modal -->
+<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-pen-alt"></i>
+</a>
+ <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-trash-alt"></i>
+</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Tabla de Roles</h2>
+	<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Temas</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>
+      	<p>Tema1,Tema2,Tema3</p>
+      </td>
+      <td>
+      	      		<!-- Button trigger modal -->
+<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-pen-alt"></i>
+</a>
+ <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-trash-alt"></i>
+</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Tabla de Tema</h2>
+	<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tema1</td>
+      <td>
+      	      		<!-- Button trigger modal -->
+<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-pen-alt"></i>
+</a>
+ <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fas fa-trash-alt"></i>
+</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br><br>
+<h1>Gestion de Roles</h1>
+<form method="post" action="">
+	<input list="rolespost" name="rolespost" id="rolespostinput" class="col-sm-6 custom-select custom-select-sm">
+<datalist id="rolespost">
+  		{% for rol in rolldos %}
+		<option value=""> {{rol.descripcion}} </option>
+		{% endfor %}
+</datalist>           
+    <div class="form-group">
+      <br>
+      <label for="listtema">Lista de temas:</label>
+      <select multiple class="form-control col-sm-6" id="listtema">
+        {% for tema in temas %}
+        <option value="{{tema._id}}">{{tema.descripcion}}</option>
+        <br>      
+		{% endfor %}     
+      </select>
+    </div>    
+    <input type="text" id="tbtemas" name="tbtemas" value="">
+</form>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Gestion de Usuarios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<script type="text/javascript">
+var temas=[];
+
+$('#listtema').on('change',function() {
+  
+  var tema=$(this).val();
+  alert(tema);
+  var inputtema = document.getElementById("tbtemas");
+  inputtema.value += tema+",";
+});    
+
+$('#listroles').on('change',function() {
+  
+  var rol=$(this).val();
+  alert(rol);
+  var inputrol = document.getElementById("tbroles");
+  inputrol.value += rol+",";
+});    
+
+
+
+function muestra_oculta(id){
+if (document.getElementById){ //se obtiene el id
+var el = document.getElementById(id); //se define la variable "el" igual a nuestro div
+el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
+}
+}
+window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
+muestra_oculta('contenido');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+}
+</script>
 {% endblock %}

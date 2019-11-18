@@ -25,7 +25,7 @@ def loginadmin():
         if login_admin:
             if request.form['passwordadmin'] == login_admin['password']:
                 session['emailadmin'] = request.form['emailadmin']
-                return render_template('usuarios.html')
+                return redirect(url_for('usuario'))
                 # TODO CAMBIAR POR URL FOR PARA LA URL PERO SI SIRVE EL LOGIN
 
         flash('CONTRASEÑA INCORRECTA')
@@ -39,7 +39,20 @@ def usuario():
 	temas_collection=mongo.db.temas
 	admin_usuarios = admin_collection.find()
 	roles=roles_collection.find()
+	rolesdos=roles_collection.find()
 	temasc=temas_collection.find()
-	return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=roles)
+	return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=rolesdos)
 
-
+@app.route('/saveroluser', methods=['POST'])
+def saveroluser():
+	usuario=request.form['usuario']
+	tbroles=request.form['tbroles']
+	temp=len(tbroles)
+	tbroles=tbroles[:temp-1]# EL CODIGO PARA QUITARLE EL ULTIMO CARACTER AL STRING
+	lista=tbroles.split(",")#EL SPLIT QUE CONVERTIRA LA LISTA EN ARRAY
+	admin_collection=mongo.db.admin
+	usuariolist=admin_collection.find_one({'emailadmin':usuario})
+	idusuario=usuariolist['_id']
+	#admin_collection.update_one({},{'_id':idusuario},{"$set":{"roles":lista}},multi=True)
+	admin_collection.update_one({'_id':idusuario},{"$set":{"roles":lista}})
+	return redirect(url_for('usuario'))
