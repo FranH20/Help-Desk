@@ -1,191 +1,355 @@
 {% extends "adminbase.html" %}
 {% block body %}
-<div class="row">
-	<div class="col-sm-6">
-<h1>Gestion de Usuarios</h1>
+<div class="m-portlet m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_5">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                          <i class="flaticon-user-add"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                          Agregar Usuario
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                          <a href="#" m-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-power-off"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-circle"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href="#"  m-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-expand"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--begin::Form-->
+                  <form class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                      <div class="form-group m-form__group m--margin-top-10">
+                        <div class="alert m-alert m-alert--default" role="alert">
+                          Formulario donde se registraran a los usuarios del Sistema
+                          y se le indicara el rol que estos tendran.
+                        </div>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Email address
+                        </label>
+                        <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <span class="m-form__help">
+                          El email sera una forma de encontrar al usuario
+                        </span>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputFirstName1">
+                          FirstName
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputFirstName1" placeholder="FirstName">
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputLastName1">
+                          LastName
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputLastName1" placeholder="LastName">
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputadminName1">
+                          Admin Name
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputadminName1" placeholder="Admin Name">
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputPassword1">
+                          Gender
+                        </label>
+                        <select class="form-control m-input m-input--solid" id="exampleSelect1">
+                        <option value="H">
+                          Hombre
+                        </option>
+                        <option value="M">
+                          Mujer
+                        </option>
+                        <option value="O">
+                          Otro
+                        </option>
+                      </select>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleTextarea">
+                          Elige los Roles:
+                        </label>
+                         <label for="exampleFormControlSelect2"></label>
+                        <select multiple class="form-control" id="listroles" name="listroles">
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                          <option value="D">D</option>
+                          <option value="E">E</option>
+                        </select>
+                        <input type="text" id="tbroles" name="tbroles" value="">
+                      </div>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                      <div class="m-form__actions">
+                        <button type="reset" class="btn btn-primary">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!--end::Form-->
+                  <!--begin: Datatable -->
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                  <thead>
+                    <tr>
+                      <th>
+                        EmailAdmin
+                      </th>
+                      <th>
+                        FirstName
+                      </th>
+                      <th>
+                        LastName
+                      </th>
+                      <th>
+                        AdminName
+                      </th>
+                      <th>
+                        Gender
+                      </th>
+                      <th>
+                        Roles
+                      </th>
+                      <th>
+                        Register Date
+                      </th>
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Type
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                      <td>
+                        {{ usuario.emailadmin }}
+                      </td>
+                      <td>
+                        {{ usuario.firstname }}
+                      </td>
+                      <td>
+                        {{ usuario.lastname }}
+                      </td>
+                      <td>
+                        {{ usuario.adminname }}
+                      </td>
+                      <td>
+                        {{ usuario.gender }}
+                      </td>
+                      <td>
+                        {% for rol in usuario.roles %}
+                        {{ rol }}
+                        {% endfor %}
+                      </td>
+                      <td>
+                        2/12/2018
+                      </td>
+                      <td>
+                        2/12/2018
+                      </td>
+                      <td>
+                        3
+                      </td>
+                      <td>
+                        2
+                      </td>
+                      <td nowrap></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
 
-  <a style='cursor: pointer;' onClick="muestra_oculta('contenido')" title="" class="boton_mostrar">Mostrar / Ocultar</a>
-<form method="post" action="/saveroluser">
-<input list="usuario" name="usuario" class="col-sm-6 custom-select custom-select-sm">
-<br>
-<datalist id="usuario">
-  {% for usuario in usuarios %}
-	<option value="{{usuario.emailadmin}}">
-  {% endfor %}
-</datalist>      
-    <label for="listroles">Lista de Roles:</label>
-      <select multiple class="form-control col-sm-6" id="listroles" name="listroles">
-        {% for rol in rolls %}
-        <option value="{{rol._id}}">{{rol.descripcion}}</option>
-        <br>      
-		{% endfor %}     
-      </select>
-      <input type="text" id="tbroles" name="tbroles" value="">
-      
-      <input type="submit" value="Guardar">   
-</form>
-</div>
-<div class="col-sm-6" id="contenido">
-	<h2>Tabla de Usuarios</h2>
-	<table class="mdl-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Email</th>
-      <th scope="col">Roles</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric">Jose</td>
-      <td class="mdl-data-table__cell--non-numeric">Jose</td>
-      <td class="mdl-data-table__cell--non-numeric">jose@jose.com</td>
-      <td class="mdl-data-table__cell--non-numeric">
-      	<p>A,B,C</p>
-      </td>
-      <td class="mdl-data-table__cell--non-numeric">
-      		<!-- Button trigger modal -->
-<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-pen-alt"></i>
-</a>
- <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-trash-alt"></i>
-</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<h2>Tabla de Roles</h2>
-	<table class="table table-sm table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Temas</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>
-      	<p>Tema1,Tema2,Tema3</p>
-      </td>
-      <td>
-      	      		<!-- Button trigger modal -->
-<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-pen-alt"></i>
-</a>
- <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-trash-alt"></i>
-</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<h2>Tabla de Tema</h2>
-	<table class="table table-sm table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Tema1</td>
-      <td>
-      	      		<!-- Button trigger modal -->
-<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-pen-alt"></i>
-</a>
- <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-	<i class="fas fa-trash-alt"></i>
-</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-<br><br>
-<h1>Gestion de Roles</h1>
-<form method="post" action="">
-	<input list="rolespost" name="rolespost" id="rolespostinput" class="col-sm-6 custom-select custom-select-sm">
-<datalist id="rolespost">
-  		{% for rol in rolldos %}
-		<option value=""> {{rol.descripcion}} </option>
-		{% endfor %}
-</datalist>           
-    <div class="form-group">
-      <br>
-      <label for="listtema">Lista de temas:</label>
-      <select multiple class="form-control col-sm-6" id="listtema">
-        {% for tema in temas %}
-        <option value="{{tema._id}}">{{tema.descripcion}}</option>
-        <br>      
-		{% endfor %}     
-      </select>
-    </div>    
-    <input type="text" id="tbtemas" name="tbtemas" value="">
-</form>
+                </div>
 
+                <!-- AQUI TERMINA EL PORTLE DEL USUARIO -->
+                <div class="m-portlet m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_5">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                          <i class="flaticon-list-3"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                          Agregar Roles
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                          <a href="#" m-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-power-off"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-circle"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href="#"  m-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-expand"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--begin::Form-->
+                  <form class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                      <div class="form-group m-form__group m--margin-top-10">
+                        <div class="alert m-alert m-alert--default" role="alert">
+                          En este formulario se especifican los roles.
+                        </div>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Nombre del Rol:
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" name="namerol" placeholder="NameRol">
+                        <span class="m-form__help">
+                          El nombre del rol es el que aparecera en las listas de registro.
+                        </span>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleTextarea">
+                          Elige los Temas del rol:
+                        </label>
+                         <label for="exampleFormControlSelect2"></label>
+                        <select multiple class="form-control" id="listtema" name="listtema">
+                          <option value="TemaA">TemaA</option>
+                          <option value="TemaB">TemaB</option>
+                          <option value="TemaC">TemaC</option>
+                          <option value="TemaD">TemaD</option>
+                          <option value="TemaE">TemaE</option>
+                        </select>
+                        <input type="text" id="tbtemas" name="tbtemas" value="">
+                      </div>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                      <div class="m-form__actions">
+                        <button type="reset" class="btn btn-primary">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!--end::Form-->
+                </div>
+                  <!--aqui termina el portle de los roles-->
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Gestion de Usuarios</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- The Modal -->
+                  <!--AQUI TERMINA EL PORTLE DE LOS TEMAS-->
+                  <div class="m-portlet m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_5">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                          <i class="flaticon-list-2"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                          Agregar Temas
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                          <a href="#" m-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-power-off"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-circle"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href="#"  m-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-expand"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--begin::Form-->
+                  <form class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                      <div class="form-group m-form__group m--margin-top-10">
+                        <div class="alert m-alert m-alert--default" role="alert">
+                          En este formulario se especifican los temas.
+                        </div>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Nombre del Tema:
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" name="nametema" placeholder="Topic Name">
+                        <span class="m-form__help">
+                          El nombre del Tema es el que aparecera en las listas de registro.
+                        </span>
+                      </div>0                  
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                      <div class="m-form__actions">
+                        <button type="reset" class="btn btn-primary">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!--end::Form-->
+                </div>
+                <!--AQUI TERMINA EL PORTLE DE TEMAS-->
 <script type="text/javascript">
 var temas=[];
 
