@@ -34,25 +34,62 @@ def loginadmin():
 
 @app.route('/usuarios')
 def usuario():
-	admin_collection = mongo.db.admin
-	roles_collection=mongo.db.roll
-	temas_collection=mongo.db.temas
-	admin_usuarios = admin_collection.find()
-	roles=roles_collection.find()
-	rolesdos=roles_collection.find()
-	temasc=temas_collection.find()
-	return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=rolesdos)
+    admin_collection = mongo.db.admin
+    roles_collection=mongo.db.roll
+    temas_collection=mongo.db.temas
+    asunto_collection=mongo.db.asunto
+    admin_usuarios = admin_collection.find()
+    roles=roles_collection.find()
+    rolesdos=roles_collection.find()
+    temasc=temas_collection.find()
+    listasunto=asunto_collection.find()
+    return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=rolesdos,asuntos=listasunto)
 
-@app.route('/saveroluser', methods=['POST'])
+@app.route('/saveuser', methods=['POST'])
 def saveroluser():
-	usuario=request.form['usuario']
-	tbroles=request.form['tbroles']
-	temp=len(tbroles)
-	tbroles=tbroles[:temp-1]# EL CODIGO PARA QUITARLE EL ULTIMO CARACTER AL STRING
-	lista=tbroles.split(",")#EL SPLIT QUE CONVERTIRA LA LISTA EN ARRAY
-	admin_collection=mongo.db.admin
-	usuariolist=admin_collection.find_one({'emailadmin':usuario})
-	idusuario=usuariolist['_id']
-	#admin_collection.update_one({},{'_id':idusuario},{"$set":{"roles":lista}},multi=True)
-	admin_collection.update_one({'_id':idusuario},{"$set":{"roles":lista}})
-	return redirect(url_for('usuario'))
+    firstname=request.form['FirstName']
+    lastname=request.form['LastName']
+    adminname=request.form['adminname']
+    gender=request.form['gender']
+    password=request.form['passwordadmin']
+    tbroles=request.form['tbroles']
+    emailadmin=request.form['emailadmin']
+    temp=len(tbroles)
+    tbroles=tbroles[:temp-1]# EL CODIGO PARA QUITARLE EL ULTIMO CARACTER AL STRING
+    lista=tbroles.split(",")#EL SPLIT QUE CONVERTIRA LA LISTA EN ARRAY
+    admin_collection=mongo.db.admin
+    admin_collection.insert({'emailadmin':emailadmin,'firstname':firstname,'lastname':lastname,'adminname':adminname,'gender':gender,'adminroll':"B",'password':password,'roles':lista})
+    #usuariolist=admin_collection.find_one({'emailadmin':usuario})
+    #idusuario=usuariolist['_id']
+    #admin_collection.update_one({},{'_id':idusuario},{"$set":{"roles":lista}},multi=True)
+    #admin_collection.update_one({'_id':idusuario},{"$set":{"roles":lista}})
+    return redirect(url_for('usuario'))
+    
+
+@app.route('/savetheme',methods=['POST'])
+def savetheme():
+    descripcion=request.form['nametema']
+    theme_collection=mongo.db.temas
+    theme_collection.insert({'descripcion':descripcion})
+    return redirect(url_for('usuario'))
+
+@app.route('/saveasunto',methods=['POST'])
+def saveasunto():
+    nameasunto=request.form['nameasunto']
+    asunto_collection=mongo.db.asunto
+    asunto_collection.insert({'descripcion':nameasunto})
+    return redirect(url_for('usuario'))
+
+@app.route('/saverol',methods=['POST'])
+def saverol():
+    nombrerol=request.form['namerol']
+    tbtemas=request.form['tbtemas']
+    temp=len(tbtemas);
+    tbtemas=tbtemas[:temp-1]
+    listatemas=tbtemas.split(",")
+    roles_collection=mongo.db.roll
+    roles_collection.insert({'descripcion':nombrerol,'temas':listatemas})
+    #listroles=roles_collection.find_one({'descripcion':nombrerol})
+    #rol_id=listroles['_id']
+    #admin_collection.update_one({'_id':rol_id},{"$set":{"temas":listatemas}})
+    return redirect(url_for('usuario'))

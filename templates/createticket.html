@@ -18,6 +18,14 @@
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
+															Numero de Ticket
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" name="contador" value="{{contador}}" readonly="true">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
 															Full Name
 														</label>
 														<div class="col-7">
@@ -39,12 +47,27 @@
                                                     Tema de ayuda</label>
                                                 <div class="col-7">
                                                     <select class="bs-select form-control" data-live-search="true"  name="tema" data-size="8" required>
-                                                        <option value="1">Tema de Ayuda 1</option>
-                                                        <option value="2">Tema de Ayuda 2</option>
+                                                    	{% for tema in temas %}
+
+                                                        <option value="{{tema._id}}">{{tema.descripcion}}</option>                                                  
+                                                    	{% endfor %}
                                                     </select>
                                                 </div>
 													</div>
-													<div class="form-group m-form__group row">
+														<div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Asunto</label>
+                                                <div class="col-7">
+                                                    <select class="bs-select form-control" data-live-search="true"  name="asunto" data-size="8" required>                                                  
+                                                        {% for asunto in asuntos %}
+
+                                                        <option value="{{asunto._id}}">{{asunto.descripcion}}</option>                                                  
+                                                    	{% endfor %}
+                                                    </select>
+                                                </div>
+													</div>
+													<!--<div class="form-group m-form__group row">
 
                                                 <label for="example-text-input" class="col-2 col-form-label">
                                                     Asunto</label>
@@ -53,13 +76,13 @@
                                                         <option value="1">ASUNTO 1</option>
                                                         <option value="2">ASUNTO 2</option>
                                                     </select>
-                                                </div>
+                                                </div>-->
 													</div>
                                     <!-- COMIENZO DEL TEXT AREA-->
                                    	<div class="form-group m-form__group row">
 
                                                 <label for="example-text-input" class="col-2 col-form-label">
-                                                    Asunto</label>
+                                                    </label>
                                                 <div class="col-7">
                                                    <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
                                                 </div>

@@ -38,7 +38,7 @@
                     </div>
                   </div>
                   <!--begin::Form-->
-                  <form class="m-form m-form--fit m-form--label-align-right">
+                  <form class="m-form m-form--fit m-form--label-align-right" action="/saveuser" method="POST">
                     <div class="m-portlet__body">
                       <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -50,7 +50,7 @@
                         <label for="exampleInputEmail1">
                           Email address
                         </label>
-                        <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="emailadmin">
                         <span class="m-form__help">
                           El email sera una forma de encontrar al usuario
                         </span>
@@ -59,25 +59,31 @@
                         <label for="exampleInputFirstName1">
                           FirstName
                         </label>
-                        <input type="text" class="form-control m-input" id="exampleInputFirstName1" placeholder="FirstName">
+                        <input type="text" class="form-control m-input" id="exampleInputFirstName1" placeholder="FirstName" name="FirstName">
                       </div>
                       <div class="form-group m-form__group">
                         <label for="exampleInputLastName1">
                           LastName
                         </label>
-                        <input type="text" class="form-control m-input" id="exampleInputLastName1" placeholder="LastName">
+                        <input type="text" class="form-control m-input" id="exampleInputLastName1" placeholder="LastName" name="LastName">
                       </div>
                       <div class="form-group m-form__group">
                         <label for="exampleInputadminName1">
                           Admin Name
                         </label>
-                        <input type="text" class="form-control m-input" id="exampleInputadminName1" placeholder="Admin Name">
+                        <input type="text" class="form-control m-input" id="exampleInputadminName1" placeholder="Admin Name" name="adminname">
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputadminName1">
+                          Password
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputadminName1" placeholder="Password" name="passwordadmin">
                       </div>
                       <div class="form-group m-form__group">
                         <label for="exampleInputPassword1">
                           Gender
                         </label>
-                        <select class="form-control m-input m-input--solid" id="exampleSelect1">
+                        <select class="form-control m-input m-input--solid" id="gender" name="gender">
                         <option value="H">
                           Hombre
                         </option>
@@ -95,18 +101,16 @@
                         </label>
                          <label for="exampleFormControlSelect2"></label>
                         <select multiple class="form-control" id="listroles" name="listroles">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="E">E</option>
+                          {% for roldos in rolldos %}
+                          <option value="{{ roldos._id }}">{{ roldos.descripcion }}</option>              
+                          {% endfor %}
                         </select>
                         <input type="text" id="tbroles" name="tbroles" value="">
                       </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                       <div class="m-form__actions">
-                        <button type="reset" class="btn btn-primary">
+                        <button type="Submit" class="btn btn-primary">
                           Submit
                         </button>
                         <button type="reset" class="btn btn-secondary">
@@ -121,7 +125,7 @@
                   <thead>
                     <tr>
                       <th>
-                        EmailAdmin
+                        Email Admin
                       </th>
                       <th>
                         FirstName
@@ -130,16 +134,19 @@
                         LastName
                       </th>
                       <th>
-                        AdminName
+                        Admin Name
                       </th>
                       <th>
                         Gender
                       </th>
                       <th>
-                        Roles
+                        Roless
                       </th>
                       <th>
-                        Register Date
+                        CompanyName
+                      </th>
+                      <th>
+                        ShipDate
                       </th>
                       <th>
                         Status
@@ -153,7 +160,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for usuario in usuarios %}
+                       {% for usuario in usuarios %}
                     <tr>
                       <td>
                         {{ usuario.emailadmin }}
@@ -234,7 +241,7 @@
                     </div>
                   </div>
                   <!--begin::Form-->
-                  <form class="m-form m-form--fit m-form--label-align-right">
+                  <form class="m-form m-form--fit m-form--label-align-right" action="/saverol" method="POST">
                     <div class="m-portlet__body">
                       <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -256,18 +263,16 @@
                         </label>
                          <label for="exampleFormControlSelect2"></label>
                         <select multiple class="form-control" id="listtema" name="listtema">
-                          <option value="TemaA">TemaA</option>
-                          <option value="TemaB">TemaB</option>
-                          <option value="TemaC">TemaC</option>
-                          <option value="TemaD">TemaD</option>
-                          <option value="TemaE">TemaE</option>
+                          {% for tema in temas %}
+                          <option value=" {{ tema._id }} ">{{ tema.descripcion }}</option>
+                          {% endfor %}
                         </select>
                         <input type="text" id="tbtemas" name="tbtemas" value="">
                       </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                       <div class="m-form__actions">
-                        <button type="reset" class="btn btn-primary">
+                        <button type="Submit" class="btn btn-primary">
                           Submit
                         </button>
                         <button type="reset" class="btn btn-secondary">
@@ -319,7 +324,7 @@
                     </div>
                   </div>
                   <!--begin::Form-->
-                  <form class="m-form m-form--fit m-form--label-align-right">
+                  <form class="m-form m-form--fit m-form--label-align-right" action="/savetheme" method="POST">
                     <div class="m-portlet__body">
                       <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -334,11 +339,11 @@
                         <span class="m-form__help">
                           El nombre del Tema es el que aparecera en las listas de registro.
                         </span>
-                      </div>0                  
+                      </div>             
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                       <div class="m-form__actions">
-                        <button type="reset" class="btn btn-primary">
+                        <button type="Submit" class="btn btn-primary">
                           Submit
                         </button>
                         <button type="reset" class="btn btn-secondary">
@@ -348,8 +353,108 @@
                     </div>
                   </form>
                   <!--end::Form-->
+                  <!--begin: Datatable -->
+                
+                  <table class="table" id="base_responsive_columns">
+                  <thead>
+                    <tr><td>N°</td>
+                    <td>Nombre</td></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td>Tema1</td></tr>
+                  </tbody>
+                </table>
+                
+                <!--end: Datatable -->
+              
+
                 </div>
                 <!--AQUI TERMINA EL PORTLE DE TEMAS-->
+                <!--AQUI COMIENZA EL PORTLE DE LOS ASUNTOS-->
+                  <div class="m-portlet m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_5">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                          <i class="flaticon-list-2"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                          Agregar Asuntos
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                          <a href="#" m-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-power-off"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-circle"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href="#"  m-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-expand"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--begin::Form-->
+                  <form class="m-form m-form--fit m-form--label-align-right" action="/saveasunto" method="POST">
+                    <div class="m-portlet__body">
+                      <div class="form-group m-form__group m--margin-top-10">
+                        <div class="alert m-alert m-alert--default" role="alert">
+                          En este formulario se especifican los asuntos.
+                        </div>
+                      </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Nombre del Asunto:
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" name="nameasunto" placeholder="Topic Name">
+                        <span class="m-form__help">
+                          El nombre del asunto aparecera al registrar un nuevo ticket.
+                        </span>
+                      </div>             
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                      <div class="m-form__actions">
+                        <button type="Submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!--end::Form-->
+                  <!--begin: Datatable -->
+                
+                  <table class="table" id="base_responsive_columns">
+                  <thead>
+                    <tr><td>N°</td>
+                    <td>Nombre</td></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td>Asunto1</td></tr>
+                  </tbody>
+                </table>
+                
+                <!--end: Datatable -->
+              
+
+                </div>
+                <!--AQUI TERMINA EL PORTLE DE ASUNTO-->
 <script type="text/javascript">
 var temas=[];
 
