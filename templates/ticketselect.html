@@ -13,18 +13,38 @@
   <div class="container">
   	<div class="row">
     <div class="col">
-      <p class="lead">Estado : Abierto</p>
-      <p class="lead">Prioridad: Normal</p>
-      <p class="lead">Creado en: 12/54/55</p>
+      <p class="lead">Estado : 
+		{% if ticket.estado|string() == "A" %}
+		Abierto
+		{% endif %}
+      </p>
+      <p class="lead">Prioridad: 
+		{% if ticket.prioridad|int() == 1 %}
+		Alta
+		{% endif %}
+		{% if ticket.prioridad|int() == 2 %}
+		Media
+		{% endif %}
+		{% if ticket.prioridad|int() == 3 %}
+		Baja
+		{% endif %}
+      </p>
+      <p class="lead">Creado en: {{ ticket.fecha_creacion }}</p>
       <br>	
-      <p class="lead">Asignado a: alguien</p>
+      <p class="lead">Asignado a: {{ ticket.asignado }}</p>
     </div>
     <div class="col">
-      <p class="lead">Usuario : Usuariodemo</p>
-      <p class="lead">Correo : Correo</p>
+      <p class="lead">Usuario : {{ ticket.username }}</p>
+      <p class="lead">Correo : {{ ticket.emailuser }} </p>
       <br>
-      <p class="lead">Tema de ayuda : Algun tema</p>
-      <p class="lead">Ultima respuesta : 12/78/25</p>
+      <p class="lead">Tema de ayuda : 
+		{% for tema in temas %}
+		{% if ticket.tema|string() == tema._id|string() %}
+		{{ tema.descripcion }}
+		{% endif %}
+		{% endfor %}
+      </p>
+      <p class="lead">Ultima respuesta : Fecha de respuesta</p>
     </div>
   </div>
 </div>
@@ -51,12 +71,13 @@
 <div class="row">
 	<div class="col-8">
   	<p><strong>Para :</strong></p>
-  	<input type="text" value="El que envia el ticket" readonly="true">
+  	<input type="text" value="<< {{ ticket.username }} {{ ticket.emailuser }} >>" readonly="true">
   	<p><strong>Respuesta Predefinida :</strong></p>
   	<select name="" id="">
   		<option value="">Alguna Respuesta Predefinida</option>
   	</select>
   	<br><br>
+  	<form action="/ticketreply" method="post">
   	 <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
   	 <br><br>
   	 <p><strong>Archivos adicionales</strong></p>
@@ -70,6 +91,9 @@
   	 	<option value="A">Abierto</option>
   	 	<option value="C">Cerrado</option>
   	 </select>
+  	 <input type="text" name="idticket" value="{{ ticket._id }}" readonly="true">
+  	 <input type="submit" value="Responder">
+  	 </form>
   	 </div>
 </div>
 </div>
