@@ -1,0 +1,82 @@
+{% extends "adminbase.html" %}
+{% block body %}
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Ticket #{{ ticket.numero }}</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hilo</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+<h4>Solicitud</h4>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+  	<div class="row">
+    <div class="col">
+      <p class="lead">Estado : Abierto</p>
+      <p class="lead">Prioridad: Normal</p>
+      <p class="lead">Creado en: 12/54/55</p>
+      <br>	
+      <p class="lead">Asignado a: alguien</p>
+    </div>
+    <div class="col">
+      <p class="lead">Usuario : Usuariodemo</p>
+      <p class="lead">Correo : Correo</p>
+      <br>
+      <p class="lead">Tema de ayuda : Algun tema</p>
+      <p class="lead">Ultima respuesta : 12/78/25</p>
+    </div>
+  </div>
+</div>
+<br><br><br>
+<div class="card text-dark border-dark mb-1">
+  <div class="card-header border-info bg-info">
+   <h5><strong>Usuario DEMO posted 15/05/68 5:08</strong></h5>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote">
+      Buenas tardes, le solicito algo.
+    </blockquote>
+  </div>
+</div>
+  </div>
+  <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-respuesta" role="tab" aria-controls="nav-home" aria-selected="true">Publicar Respuesta</a>
+</div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-respuesta" role="tabpanel" aria-labelledby="nav-home-tab">
+  	<div class="container">
+<div class="row">
+	<div class="col-8">
+  	<p><strong>Para :</strong></p>
+  	<input type="text" value="El que envia el ticket" readonly="true">
+  	<p><strong>Respuesta Predefinida :</strong></p>
+  	<select name="" id="">
+  		<option value="">Alguna Respuesta Predefinida</option>
+  	</select>
+  	<br><br>
+  	 <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
+  	 <br><br>
+  	 <p><strong>Archivos adicionales</strong></p>
+  	  <div class="custom-file">
+        <input type="file" class="custom-file-input" name="archivo" aria-describedby="inputGroupFileAddon01">
+       <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+       </div>
+  	 <br><br>
+  	 <p><strong>Estado del Ticket</strong></p>
+  	 <select name="estado" id="">
+  	 	<option value="A">Abierto</option>
+  	 	<option value="C">Cerrado</option>
+  	 </select>
+  	 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+</div>
+</div>
+{% endblock %}

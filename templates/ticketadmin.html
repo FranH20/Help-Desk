@@ -64,7 +64,7 @@
                   </thead>
                   <tbody> 
                   {% for ticket in tickets %}                      
-                    <tr>
+                    <tr class='clickable-row' data-href='/ticketselect/{{ ticket.numero }}'>
                       <td> {{ ticket.numero }} </td>
                       <td> {{ ticket.fecha_creacion }} </td>
                       <td> 
@@ -97,5 +97,12 @@
                 </div>
 
                 <!-- AQUI TERMINA EL PORTLE DEL USUARIO -->
+                <script>
+                  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+                </script>
 {% endblock %}
 
