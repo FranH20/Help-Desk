@@ -77,7 +77,7 @@
   		<option value="">Alguna Respuesta Predefinida</option>
   	</select>
   	<br><br>
-  	<form action="/ticketreply" method="post">
+  	<form action="/ticketreply" method="post" enctype="multipart/form-data">
   	 <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
   	 <br><br>
   	 <p><strong>Archivos adicionales</strong></p>
@@ -91,7 +91,8 @@
   	 	<option value="A">Abierto</option>
   	 	<option value="C">Cerrado</option>
   	 </select>
-  	 <input type="text" name="idticket" value="{{ ticket._id }}" readonly="true">
+  	 <input type="text" name="idticket" value="{{ticket._id}}" readonly="true">
+  	 <input type="text" name="numero" value="{{ticket.numero}}">
   	 <input type="submit" value="Responder">
   	 </form>
   	 </div>
@@ -100,7 +101,25 @@
 </div>
 </div>
 </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  	{% for hilo in listhilo %}
+  	<div class="card w-75">
+  <div class="card-body">
+    {% if hilo.id_admin|string() == ticket.emailuser|string() %}
+    <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
+    <h5 class="card-title">Respuesta de  : {{ticket.emailuser}}</h5>
+    {% else %}
+    <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
+    <h5 class="card-title">Respuesta de : {{usuarios.emailadmin}}</h5>
+    {% endif %}
+    
+    <div class="card-text">
+    	{{hilo.descripcion|string()}}
+   	</div>
+  </div>
+</div>
+  	{% endfor %}
+  </div>
 </div>
 </div>
 {% endblock %}

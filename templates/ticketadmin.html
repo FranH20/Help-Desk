@@ -64,7 +64,7 @@
                   </thead>
                   <tbody> 
                   {% for ticket in tickets %}                      
-                    <tr class='clickable-row' data-href='/ticketselect/{{ ticket.numero }}'>
+                    <tr class='clickable-row' data-href='/ticketselect/{{ ticket.numero }}/{{ ticket._id }}'>
                       <td> {{ ticket.numero }} </td>
                       <td> {{ ticket.fecha_creacion }} </td>
                       <td> 
