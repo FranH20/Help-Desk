@@ -49,7 +49,7 @@ def ticketselectuser(numero,id):
     hilo_list=hilo_ticket.find({'idticket':id})
     idadmin=lista_tickets['asignado']
     list_user=admin_collection.find_one({'_id':idadmin})
-    return render_template('ticketselect.html',ticket=lista_tickets,temas=lista_tema,listhilo=hilo_list,usuarios=list_user)
+    return render_template('ticketselectuser.html',ticket=lista_tickets,temas=lista_tema,listhilo=hilo_list,usuarios=list_user)
 
 
 @app.route('/ticketreplyuser',methods=['POST'])
