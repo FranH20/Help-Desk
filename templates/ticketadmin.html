@@ -1,0 +1,108 @@
+{% extends "adminbase.html" %}
+{% block body %}
+
+<div class="m-portlet m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_5">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                          <i class="flaticon-user-add"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                          Tickets En espera
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                      <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                          <a href="#" m-portlet-tool="remove" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-power-off"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="reload" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-circle"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href="#"  m-portlet-tool="fullscreen" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-expand"></i>
+                          </a>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                          <a href=""  m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>             
+                  <!--begin: Datatable -->
+                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                  <thead>
+                    <tr>
+                      <th>
+                        Número
+                      </th>
+                      <th>
+                        Fecha de Creación
+                      </th>
+                      <th>
+                        Asunto
+                      </th>
+                      <th>
+                        De
+                      </th>
+                      <th>
+                        Prioridad
+                      </th>
+                      <th>
+                        Asignado a
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                  {% for ticket in tickets %}                      
+                    <tr class='clickable-row' data-href='/ticketselect/{{ ticket.numero }}/{{ ticket._id }}'>
+                      <td> {{ ticket.numero }} </td>
+                      <td> {{ ticket.fecha_creacion }} </td>
+                      <td> 
+
+                       {% for asunto in asuntos %}
+                      {% if ticket.asunto|string() == asunto._id|string() %}
+                      {{asunto.descripcion}}
+                     {% endif %}
+                      {% endfor %}
+                     
+
+
+                    </td>
+                      <td> {{ ticket.emailuser }} </td>
+                      {% if ticket.prioridad|int() == 1 %}
+                         <td class="btn btn-warning"><strong>Alta</strong></td>
+                        {% endif %}
+                        {% if ticket.prioridad|int() == 2 %}
+                      <td class="btn btn-primary"><strong>Media</strong></td>
+                        {% endif %}
+                           {% if ticket.prioridad|int() == 3 %}
+                      <td class="btn btn-secondary"><strong>baja</strong></td>
+                        {% endif %}                    
+                      <td nowrap></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+                </div>
+
+                <!-- AQUI TERMINA EL PORTLE DEL USUARIO -->
+                <script>
+                  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+                </script>
+{% endblock %}
+

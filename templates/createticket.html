@@ -1,0 +1,138 @@
+{% extends "userbase.html" %}
+{% block body %}
+                                    <div class="tab-content">
+										<div class="tab-pane active" id="m_user_profile_tab_1">
+											<form id="ticket" class="m-form m-form--fit m-form--label-align-right" action="/generarticket" method="post" enctype="multipart/form-data">
+												<div class="m-portlet__body">
+													<div class="form-group m-form__group m--margin-top-10 m--hide">
+														<div class="alert m-alert m-alert--default" role="alert">
+															The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																Rellene el formulario para generar un ticket
+															</h3>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Numero de Ticket
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" name="contador" value="{{contador}}" readonly="true">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Full Name
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" name="username" value="{{username}}">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Email
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" name="emailuser" value="{{emailuser}}">
+														</div>
+													</div>
+                                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+                                                    	<div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Tema de ayuda</label>
+                                                <div class="col-7">
+                                                    <select class="bs-select form-control" data-live-search="true"  name="tema" data-size="8" required>
+                                                    	{% for tema in temas %}
+
+                                                        <option value="{{tema._id}}">{{tema.descripcion}}</option>                                                  
+                                                    	{% endfor %}
+                                                    </select>
+                                                </div>
+													</div>
+														<div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Asunto</label>
+                                                <div class="col-7">
+                                                    <select class="bs-select form-control" data-live-search="true"  name="asunto" data-size="8" required>                                                  
+                                                        {% for asunto in asuntos %}
+
+                                                        <option value="{{asunto._id}}">{{asunto.descripcion}}</option>                                                  
+                                                    	{% endfor %}
+                                                    </select>
+                                                </div>
+													</div>
+													<!--<div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Asunto</label>
+                                                <div class="col-7">
+                                                    <select class="bs-select form-control" data-live-search="true" name="asunto" data-size="8" required>
+                                                        <option value="1">ASUNTO 1</option>
+                                                        <option value="2">ASUNTO 2</option>
+                                                    </select>
+                                                </div>-->
+													</div>
+                                    <!-- COMIENZO DEL TEXT AREA-->
+                                   	<div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    </label>
+                                                <div class="col-7">
+                                                   <textarea id="mytextarea" name="descripcion" required >Hello, World!</textarea>
+                                                </div>
+													</div>
+                                        <!-- fin del text area -->
+                                                    <div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Archivos adicionales</label>
+                                                <div class="col-7">
+															 <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" name="archivo"
+                                                                  aria-describedby="inputGroupFileAddon01">
+                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                              </div>
+														</div>
+													</div>
+                                                    <div class="form-group m-form__group row">
+
+                                                <label for="example-text-input" class="col-2 col-form-label">
+                                                    Prioridad</label>
+                                                <div class="col-7">
+                                                    <select class="bs-select form-control" data-live-search="true" name="prioridad" data-size="8" required>
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Media</option>
+                                                        <option value="3">Baja</option>
+                                                    </select>
+                                                </div>
+													</div>
+                                                </div>
+												<div class="m-portlet__foot m-portlet__foot--fit">
+													<div class="m-form__actions">
+														<div class="row">
+															<div class="col-2"></div>
+															<div class="col-7">
+																<button  type="submit" id="btn-ticket" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+																	Save changes
+																</button>
+																&nbsp;&nbsp;
+																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+																	Cancel
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="tab-pane " id="m_user_profile_tab_2"></div>
+										<div class="tab-pane " id="m_user_profile_tab_3"></div>
+                                    </div>
+
+{% endblock %}
