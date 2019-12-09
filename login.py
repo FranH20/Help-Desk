@@ -45,7 +45,7 @@ def login():
                 session['emailuser'] = request.form['emailuser']
                 return redirect(url_for('profile'))
 
-        flash('CONTRASEÑA INCORRECTA')
+        flash('PASSWORD INCORRECTA')
         return render_template('login.html')
 
 
@@ -72,7 +72,7 @@ def register():
                 flash('El email ya se ha registrado')
                 return render_template('register.html')
         else:
-            flash('LAS CONTRASEÑAS NO COINCIDEN')
+            flash('LA PASSWORD NO COINCIDE')
             return render_template('register.html')
     else:
         return render_template('register.html')

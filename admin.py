@@ -28,7 +28,7 @@ def loginadmin():
                 return redirect(url_for('usuario'))
                 # TODO CAMBIAR POR URL FOR PARA LA URL PERO SI SIRVE EL LOGIN
 
-        flash('CONTRASEÑA INCORRECTA')
+        flash('PASSWORD INCORRECTA')
         return render_template('loginadmin.html')
 
 
