@@ -115,6 +115,12 @@
     
     <div class="card-text">
     	{{hilo.descripcion|string()}}
+      <br>
+      {% if hilo.archivo %}
+      <a class="btn btn-outline-info" href="/file/{{hilo.archivo}}" target="_blank" >{{hilo.archivo}}</a>
+      {% else %}
+      <p class="btn btn-outline-info">No hay archivos indexados</p>
+      {% endif %}
    	</div>
   </div>
 </div>

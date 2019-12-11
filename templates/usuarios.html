@@ -357,11 +357,19 @@
                 
                   <table class="table" id="base_responsive_columns">
                   <thead>
-                    <tr><td>N°</td>
-                    <td>Nombre</td></tr>
+                    <tr>
+                      <td>N°</td>
+                    <td>Nombre</td>
+                  </tr>
                   </thead>
-                  <tbody>
-                    <tr><td>1</td><td>Tema1</td></tr>
+                  <tbody>                
+                    {% for temados in tema2 %}              
+                          <tr>
+                            <td> {{loop.index}} </td>
+                            <td>{{temados.descripcion}}</td>
+                          </tr>                      
+                    {% endfor %}
+
                   </tbody>
                 </table>
                 
@@ -442,11 +450,20 @@
                 
                   <table class="table" id="base_responsive_columns">
                   <thead>
-                    <tr><td>N°</td>
-                    <td>Nombre</td></tr>
+                    <tr>
+                      <td>N°</td>
+                    <td>Nombre</td>
+                  </tr>
                   </thead>
                   <tbody>
-                    <tr><td>1</td><td>Asunto1</td></tr>
+                    <tr>
+                      {% for asunto in asuntos %}              
+                          <tr>
+                            <td> {{loop.index}} </td>
+                            <td>{{asunto.descripcion}}</td>
+                          </tr>                      
+                    {% endfor %}
+                    </tr>
                   </tbody>
                 </table>
                 

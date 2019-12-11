@@ -42,8 +42,10 @@ def usuario():
     roles=roles_collection.find()
     rolesdos=roles_collection.find()
     temasc=temas_collection.find()
+    temasdos=temas_collection.find()
     listasunto=asunto_collection.find()
-    return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=rolesdos,asuntos=listasunto)
+
+    return render_template('usuarios.html',usuarios=admin_usuarios,rolls=roles,temas=temasc,rolldos=rolesdos,asuntos=listasunto,tema2=temasdos)
 
 @app.route('/saveuser', methods=['POST'])
 def saveroluser():

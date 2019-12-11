@@ -6,6 +6,7 @@ def ticketadmin():
 	asunto_collection=mongo.db.asunto
 	lista_tickets=ticket_collection.find()
 	lista_asunto=asunto_collection.find()
+	#team_info = zip(teams, wins)#NUEVO
 	return render_template('ticketadmin.html',tickets=lista_tickets,asuntos=lista_asunto)
 
 @app.route('/ticketselect/<numero>/<id>',methods=['POST','GET'])
@@ -39,6 +40,7 @@ def ticketreply():
 	#ticket_id=ticket_collection.find_one({'_id':idticket})
 	numero=request.form['numero']
 	ticket_collection.update_one({'numero':numero},{"$set":{"asignado":idadmin}})
+	ticket_collection.update_one({'numero':numero},{"$set":{"estado":estado}})#NUEVA PARTE
 	#if ticket_id['asignado'] is None: #esto esta super mal
 		#ticket_collection.find_one_and_update({"_id" : idticket},{"$set":{"asignado": idadmin}},upsert=True)# este query no funciona y crea uno nuevo
 	return ticketadmin()

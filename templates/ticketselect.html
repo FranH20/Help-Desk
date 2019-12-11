@@ -108,9 +108,11 @@
     {% if hilo.id_admin|string() == ticket.emailuser|string() %}
     <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
     <h5 class="card-title">Respuesta de  : {{ticket.emailuser}}</h5>
+    <a class="card-title" href="/file/{{ticket.archivo}}">{{ticket.archivo}}</a>
     {% else %}
     <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
     <h5 class="card-title">Respuesta de : {{usuarios.emailadmin}}</h5>
+    <a class="card-title" href="/file/{{ticket.archivo}}">{{ticket.archivo}}</a>
     {% endif %}
     
     <div class="card-text">
