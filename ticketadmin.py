@@ -4,10 +4,19 @@ from app import *
 def ticketadmin():
 	ticket_collection=mongo.db.ticket
 	asunto_collection=mongo.db.asunto
-	lista_tickets=ticket_collection.find()
+	lista_tickets=ticket_collection.find({'estado':'A'})
 	lista_asunto=asunto_collection.find()
-	#team_info = zip(teams, wins)#NUEVO
+	#res = zip(lista_tickets, lista_asunto)#NUEVO
 	return render_template('ticketadmin.html',tickets=lista_tickets,asuntos=lista_asunto)
+
+@app.route('/ticketadmincerrado')
+def ticketcerrado():
+	ticket_collection=mongo.db.ticket
+	asunto_collection=mongo.db.asunto
+	lista_tickets=ticket_collection.find({'estado':'C'})
+	lista_asunto=asunto_collection.find()
+	#res = zip(lista_tickets, lista_asunto)#NUEVO
+	return render_template('ticketadmincerrado.html',tickets=lista_tickets,asuntos=lista_asunto)
 
 @app.route('/ticketselect/<numero>/<id>',methods=['POST','GET'])
 def ticketselect(numero,id):

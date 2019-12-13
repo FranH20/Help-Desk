@@ -1,0 +1,97 @@
+{% extends "adminbase.html" %}
+{% block body %}
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Oficinas</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tabla de incidencias</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile p-0">
+            <div class="card">
+                <div class="card-header card-header-m d-flex align-items-center">
+                    <span>Oficinas</span>
+                    <div class="ml-auto d-flex">
+                    </div>
+                </div>
+            </div>
+            <!-- accordion -->
+            <div class="accordion" id="accordionFase">
+                <!-- item -->
+                <div class="card">
+                    <!-- header -->
+                    {% for oficina in oficinas %}
+                    <div class="card-header card-header-mm d-flex align-items-center">
+                        <a href="#" data-toggle="collapse" data-target="#Ofi{{oficina._id}}">{{oficina.nombre}}</a>
+                        <div class="ml-auto">
+                          <a href="#" class="btn btn-sm btn-success"><i class="fa fa-pencil m-0" aria-hidden="true"></i></a>
+                          <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash m-0" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 5body -->
+                        {% for per in personal %}
+                            {% if oficina._id|string()==per.oficinaid|string() %}
+                    <div id="Ofi{{oficina._id}}" class="collapse show_x" data-parent="#accordionFase">
+                        <div class="card-body">
+                            <!-- element -->
+                            <div class="element-item">
+                                <div class="element-wrapper d-sm-flex align-items-center">
+                                    <div class="element-header py-2 py-lg-0">
+                                        <h6 class="element-header__title">{{per.nombre}}</h6>
+                                        <span class="element-header__code">{{per.cargo}}</span>
+                                    </div>
+                                    <div class="element-control ml-auto">
+                                        <a href="/usuarioincidencia/{{ per._id }}"><i class="fa fa-eye m-0" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- element -->
+                        </div>
+                    </div>
+                            {% endif %}
+                            {% endfor %}
+                    {% endfor %}
+                                               </div>
+
+                <!-- item -->
+            </div>
+            <!-- accordion -->
+        </div>
+    </div>
+ {% for perso in personaldos %}
+                                                <p>{{ perso.nombre }}</p>
+                                            {% endfor %}
+
+</div>
+</div>
+
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Solucion</th>
+      <th scope="col">Problema</th>
+      <th scope="col">Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for problema in problemas %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{problema.idusuario}}</td>
+      <td>{{problema.solucion}}</td>
+      <td>{{problema.problema}}</td>
+      <td>{{problema.fecha}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "adminbase.html" %}
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <form action="/guardarincidencia" method="post">
+        <input type="hidden" name="_token" id="_token" value="">
+        <input type="hidden" value="" name="Id" id="Id">
+
+            <!-- fases -->
+            <div class="tile">
+                <h3 class="tile-title">Datos de la Incidencia</h3>
+                <div class="tile-body">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label class="control-label">Fecha : </label>
+                            <input type="date" readonly class="form-control text-center" value="11/12/2019" name="Fecha" id="Fecha">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="control-label">Elemento</label>
+                            <select name="elemento" id="FaseIdM" class="form-control">
+                                    <option value="2">Software</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Tipo de Elemento</label>
+                            <select name="tipoelemento" id="" class="form-control">
+                                    <option value="1">Sistema de Notas</option>
+                                    <option value="2">Sistema de Administrativo</option>
+                                    <option value="2">Sistema de Biblioteca</option>
+                                    <option value="2">Sistema de Inventario</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-md-6">
+                            <label class="control-label">Problema </label>
+                            <textarea required name="problema" id="problema" class="form-control text-left" cols="30" rows="6"></textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="control-label">Solución</label>
+                            <textarea required name="solucion" id="solucion" class="form-control text-left" cols="30" rows="6"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="btn btn-primary text-uppercase" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>
+                </div>
+            </div>
+            <input type="text" name="idusu" hidden value="{{ personal}}">
+        </form>
+    </div>
+</div>
+{% endblock %}

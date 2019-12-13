@@ -18,7 +18,8 @@ from profile import *
 from ticket import *
 from admin import *
 from ticketadmin import *
-
+from incidencias import *
+from usuarioincidencia import*
 
 #@app.route('/')
 #def index():
