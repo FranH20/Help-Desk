@@ -51,11 +51,11 @@
 <br><br><br>
 <div class="card text-dark border-dark mb-1">
   <div class="card-header border-info bg-info">
-   <h5><strong>Usuario DEMO posted 15/05/68 5:08</strong></h5>
+   <h5><strong>Usuario: {{ticket.username}}  posted {{ticket.fecha_creacion}}</strong></h5>
   </div>
   <div class="card-body">
     <blockquote class="blockquote">
-      Buenas tardes, le solicito algo.
+      {{ticket.descripcion}}
     </blockquote>
   </div>
 </div>
@@ -108,15 +108,20 @@
     {% if hilo.id_admin|string() == ticket.emailuser|string() %}
     <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
     <h5 class="card-title">Respuesta de  : {{ticket.emailuser}}</h5>
-    <a class="card-title" href="/file/{{ticket.archivo}}">{{ticket.archivo}}</a>
     {% else %}
     <h5 class="card-title">ticket creado por : {{ticket.emailuser}}</h5>
     <h5 class="card-title">Respuesta de : {{usuarios.emailadmin}}</h5>
-    <a class="card-title" href="/file/{{ticket.archivo}}">{{ticket.archivo}}</a>
     {% endif %}
     
     <div class="card-text">
     	{{hilo.descripcion|string()}}
+      {% if hilo.archivo %}
+      <br>
+      <a class="btn btn-outline-info" href="/file/{{hilo.archivo}}" target="_blank" >{{hilo.archivo}}</a>
+      {% else %}
+      <br>
+      <p class="btn btn-outline-info">No hay archivos indexados</p>
+      {% endif %}
    	</div>
   </div>
 </div>
